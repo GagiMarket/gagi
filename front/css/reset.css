@@ -1,0 +1,57 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+}
+
+/* Reset CSS */
+a {
+  text-decoration: none;
+  color: inherit;
+  /* color: #000; */
+}
+
+button,
+input,
+textarea {
+  font-family: "DM Sans", sans-serif;
+  font-size: inherit;
+  /* font-size: 16px; */
+}
+
+button:focus,
+button:active,
+input:focus,
+input:active,
+textarea:focus,
+textarea:active {
+  box-shadow: none;
+  outline: none;
+}
+
+ul,
+ol,
+li {
+  list-style-type: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #2b292d;
+  letter-spacing: -0.01em;
+}
+
+/* >= 768px (Desktop) */
+@media screen and (min-width: 768px) {
+  /* Reset CSS */
+  p {
+    font-size: 22px;
+    line-height: 1.3636363636;
+  }
+}
