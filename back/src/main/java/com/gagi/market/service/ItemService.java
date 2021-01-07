@@ -1,8 +1,8 @@
 package com.gagi.market.service;
 
+import com.gagi.market.api.dto.ItemRequestDto;
 import com.gagi.market.domain.Item;
 import com.gagi.market.domain.ItemRepository;
-import javassist.NotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,13 +22,18 @@ public class ItemService {
         return itemRepository.findAll();
     }
 
-    public Item create(Item item) {
-        return itemRepository.save(item);
+    public Item create(ItemRequestDto requestDto) {
+        return itemRepository.save(requestDto.toEntity());
     }
 
-    public Item update(Item item) {
-        Item findItem = findItemById(item.getItemId());
-        return findItem.update(item);
+    public Item update(Long itemId, ItemRequestDto requestDto) {
+        Item findItem = findItemById(itemId);
+        return findItem.update(requestDto.toEntity());
+    }
+
+    public void delete(Long itemId) {
+        Item findItem = findItemById(itemId);
+        itemRepository.delete(findItem);
     }
 
     public Item findItemById(Long itemId) {
