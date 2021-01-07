@@ -15,6 +15,7 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	compile('org.projectlombok:lombok')
 	runtimeOnly 'com.h2database:h2'
 	/* 쿼리 라이브러리 */
 	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.5.6'

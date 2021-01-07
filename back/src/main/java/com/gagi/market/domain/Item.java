@@ -1,10 +1,16 @@
 package com.gagi.market.domain;
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Getter
+@NoArgsConstructor
 @Entity
 public class Item {
 
@@ -17,51 +23,12 @@ public class Item {
     private int itemPrice;
     private String itemLocation;
 
-    public Long getItemId() {
-        return itemId;
-    }
-
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
-    }
-
-    public String getItemName() {
-        return itemName;
-    }
-
-    public void setItemName(String itemName) {
+    @Builder
+    public Item(String itemName, String itemDescription, String itemCategory, int itemPrice, String itemLocation) {
         this.itemName = itemName;
-    }
-
-    public String getItemDescription() {
-        return itemDescription;
-    }
-
-    public void setItemDescription(String itemDescription) {
         this.itemDescription = itemDescription;
-    }
-
-    public String getItemCategory() {
-        return itemCategory;
-    }
-
-    public void setItemCategory(String itemCategory) {
         this.itemCategory = itemCategory;
-    }
-
-    public int getItemPrice() {
-        return itemPrice;
-    }
-
-    public void setItemPrice(int itemPrice) {
         this.itemPrice = itemPrice;
-    }
-
-    public String getItemLocation() {
-        return itemLocation;
-    }
-
-    public void setItemLocation(String itemLocation) {
         this.itemLocation = itemLocation;
     }
 
