@@ -1,7 +1,9 @@
 package com.gagi.market.api.dto;
 
 import com.gagi.market.domain.Item;
+import lombok.Getter;
 
+@Getter
 public class ItemResponseDto {
     private Long itemId;
     private String itemName;
