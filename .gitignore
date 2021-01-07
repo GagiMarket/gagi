@@ -23,132 +23,40 @@ front/sketch
 
 
 ## back
-# Created by https://www.toptal.com/developers/gitignore/api/java,eclipse,git,gradle
-# Edit at https://www.toptal.com/developers/gitignore?templates=java,eclipse,git,gradle
-
-### Eclipse ###
-back/.metadata
-back/bin/
-back/tmp/
-back/*.tmp
-back/*.bak
-back/*.swp
-back/*~.nib
-back/local.properties
-back/.settings/
-back/.loadpath
-back/.recommenders
-
-# External tool builders
-back/.externalToolBuilders/
-
-# Locally stored "Eclipse launch configurations"
-back/*.launch
-
-# PyDev specific (Python IDE for Eclipse)
-back/*.pydevproject
-
-# CDT-specific (C/C++ Development Tooling)
-back/.cproject
-
-# CDT- autotools
-back/.autotools
-
-# Java annotation processor (APT)
-back/.factorypath
-
-# PDT-specific (PHP Development Tools)
-back/.buildpath
-
-# sbteclipse plugin
-back/.target
-
-# Tern plugin
-back/.tern-project
-
-# TeXlipse plugin
-back/.texlipse
-
-# STS (Spring Tool Suite)
-back/.springBeans
-
-# Code Recommenders
-back/.recommenders/
-
-# Annotation Processing
-back/.apt_generated/
-back/.apt_generated_test/
-
-# Scala IDE specific (Scala & Java development for Eclipse)
-back/.cache-main
-back/.scala_dependencies
-back/worksheet
-
-# Uncomment this line if you wish to ignore the project description file.
-# Typically, this file would be tracked if it contains build/dependency configurations:
-#.project
-
-### Eclipse Patch ###
-# Spring Boot Tooling
-back/.sts4-cache/
-
-### Git ###
-# Created by git for backups. To disable backups in Git:
-# $ git config --global mergetool.keepBackup false
-back/*.orig
-
-# Created by git when using merge tools for conflicts
-back/*.BACKUP.*
-back/*.BASE.*
-back/*.LOCAL.*
-back/*.REMOTE.*
-back/*_BACKUP_*.txt
-back/*_BASE_*.txt
-back/*_LOCAL_*.txt
-back/*_REMOTE_*.txt
-
-### Java ###
-# Compiled class file
-back/*.class
-
-# Log file
-back/*.log
-
-# BlueJ files
-back/*.ctxt
-
-# Mobile Tools for Java (J2ME)
-back/.mtj.tmp/
-
-# Package Files #
-back/*.jar
-back/*.war
-back/*.nar
-back/*.ear
-back/*.zip
-back/*.tar.gz
-back/*.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-back/hs_err_pid*
-
-### Gradle ###
+back/HELP.md
 back/.gradle
 back/build/
+back/!gradle/wrapper/gradle-wrapper.jar
+back/!**/src/main/**/build/
+back/!**/src/test/**/build/
 
-# Ignore Gradle GUI config
-back/gradle-app.setting
+### STS ###
+back/.apt_generated
+back/.classpath
+back/.factorypath
+back/.project
+back/.settings
+back/.springBeans
+back/.sts4-cache
+back/bin/
+back/!**/src/main/**/bin/
+back/!**/src/test/**/bin/
 
-# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-back/!gradle-wrapper.jar
+### IntelliJ IDEA ###
+back/.idea
+back/*.iws
+back/*.iml
+back/*.ipr
+back/out/
+back/!**/src/main/**/out/
+back/!**/src/test/**/out/
 
-# Cache of project
-back/.gradletasknamecache
+### NetBeans ###
+/back/nbproject/private/
+/back/nbbuild/
+/back/dist/
+/back/nbdist/
+/back/.nb-gradle/
 
-# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
-# gradle/wrapper/gradle-wrapper.properties
-
-### Gradle Patch ###
-back/**/build/
-
-# End of https://www.toptal.com/developers/gitignore/api/java,eclipse,git,gradle
+### VS Code ###
+back/.vscode/
