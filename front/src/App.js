@@ -5,6 +5,7 @@ import './grid.min.css';
 
 import Post from './components/post';
 import List from './components/list';
+import Detail from './components/item-detail';
 
 class App extends React.Component {
 
@@ -54,6 +55,8 @@ class App extends React.Component {
               <List/>
               <List/>
               <List/>
+              <hr/> 
+              <Detail/>
             </div>
         </section>
       </Fragment>
