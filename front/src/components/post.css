@@ -1,0 +1,166 @@
+/* Post-Stock Section */
+.post-item {
+  background-color: #fff;
+  padding: 30px 0;
+}
+
+.post-item-title {
+  color: #2b292d;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.05em;
+  margin-bottom: 16px;
+}
+
+.post-img {
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.post-img input {
+  display: none;
+}
+
+.input-file-button {
+  width: 90px;
+  height: 90px;
+
+  margin-right: 8px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  background-color: #e8e8e8;
+  border-radius: 4px;
+
+  color: #555;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.item-name {
+  border: 1px solid #e8e8e8;
+  border-radius: 5px;
+  width: 100%;
+  margin-bottom: 16px;
+  padding: 10px 10px;
+
+  font-size: 15px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.item-category {
+  border: 1px solid #e8e8e8;
+  border-radius: 5px;
+  width: 100%;
+  margin-bottom: 16px;
+  padding: 10px 10px;
+
+  color: #787878;
+  font-size: 15px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.item-price {
+  width: 100%;
+  margin-bottom: 15px;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.item-price-input {
+  border: 1px solid #e8e8e8;
+  border-radius: 5px;
+  padding: 10px 10px;
+
+  font-size: 15px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.delivery-fee-chk {
+  border: 1px solid #e8e8e8;
+  border-radius: 5px;
+  padding: 10px 10px;
+
+  font-size: 15px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  cursor: pointer;
+}
+
+.delivery-fee-chk:hover {
+  opacity: 0.7;
+}
+
+.item-location {
+  border: 1px solid #e8e8e8;
+  border-radius: 5px;
+  width: 100%;
+  margin-bottom: 16px;
+  padding: 10px 10px;
+
+  color: #787878;
+  font-size: 15px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.item-tag {
+  border: 1px solid #e8e8e8;
+  border-radius: 5px;
+  width: 100%;
+  margin-bottom: 16px;
+  padding: 10px 10px;
+
+  font-size: 15px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.item-desc {
+  border: 1px solid #e8e8e8;
+  border-radius: 5px;
+  width: 100%;
+  margin-bottom: 16px;
+  padding: 10px 10px;
+
+  font-size: 15px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.post-btn {
+  width: 100%;
+  height: 60px;
+  border: none;
+  background-color: #e7e7f7;
+
+  font-size: 25px;
+  font-weight: bold;
+  color: #787878;
+  letter-spacing: 0.1em;
+}
+
+/* >= 768px (Desktop) */
+@media screen and (min-width: 768px) {
+  .post-img {
+    margin-bottom: 16px;
+  }
+
+  .input-file-button {
+    width: 150px;
+    height: 150px;
+
+    margin-right: 14px;
+  }
+
+  .item-price-input {
+    width: 80%;
+  }
+}
