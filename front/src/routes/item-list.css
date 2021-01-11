@@ -1,0 +1,11 @@
+.item-list {
+  display: block;
+  padding: 30px 0;
+}
+
+.list-title {
+  color: #2b292d;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.05em;
+}

@@ -1,5 +1,5 @@
 .list-item-div {
-  margin-bottom: 30px;
+  margin: 30px 0;
 }
 
 .list-item {
@@ -19,6 +19,7 @@
 }
 
 .list-item-name {
+  display: flex;
   border: none;
   font-size: 20px;
   line-height: 1.2;
@@ -34,6 +35,11 @@
   line-height: 1.2;
   letter-spacing: -0.02em;
   color: #2b292d;
+}
+
+.list-item-desc {
+  display: flex;
+  flex-direction: column;
 }
 
 /* >= 768px (Desktop) */

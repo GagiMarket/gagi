@@ -1,65 +1,25 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import './App.css';
 import './reset.css';
 import './grid.min.css';
+import {HashRouter, Route} from "react-router-dom";
 
-import Post from './components/post';
-import List from './components/list';
-import Detail from './components/item-detail';
+import Home from "./routes/home";
+import Post from "./routes/post";
+import ItemList from "./routes/item-list";
+import Detail from "./routes/item-detail";
 
 class App extends React.Component {
 
-  // state = {
-  //   list-items: []
-  // }
-
-  // getPostListItem = async() =>{    
-  //   const {data : {data : {items}}} = await axios.get("https://yts.mx/api/v2/list_movies.json?sort_by=rating");
-  //   this.setState({list-items:items});
-  // }
-
-  // async componentDidMount(){
-  //   this.getPostListItem();
-  // }
-
   render()
   {
-    // const {list-items} = this.state;
-
     return (
-      <Fragment>
-        {/* 물품 등록 섹션 */}
-        <Post/>
-
-        {/* 등록된 물품 리스트 섹션 */}
-        <section className="item-list container">
-          <div className="row">
-
-              {/* {movies.map(movie => (
-                <List 
-                  key={movie.id}
-                  id={movie.id}
-                  year={movie.year}
-                  title={movie.title}
-                  summary={movie.summary}
-                  poster={movie.medium_cover_image}
-                  genres={movie.genres}
-                />
-              ))} */}
-              
-              <List/>
-              <List/>
-              <List/>
-              <List/>
-              <List/>
-              <List/>
-              <List/>
-              <List/>
-              <hr/> 
-              <Detail/>
-            </div>
-        </section>
-      </Fragment>
+      <HashRouter>
+        <Route path="/" exact={true} component={Home}/>
+        <Route path="/post" component={Post}/>
+        <Route path="/itemlist" exact={true} component={ItemList}/>
+        <Route path="/itemlist/detail/:itemId" component={Detail}/>
+      </HashRouter>
     )
   }
 }
