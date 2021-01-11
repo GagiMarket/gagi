@@ -1,0 +1,31 @@
+.header-section {
+  background-color: slateblue;
+  opacity: 0.9;
+}
+
+.header {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-title {
+  font-size: 26px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #212121;
+  font-weight: bold;
+}
+
+.nav {
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #212121;
+  font-weight: bold;
+}
+
+.nav-btn {
+  margin-right: 20px;
+}
