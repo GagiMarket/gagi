@@ -1,8 +1,8 @@
-package com.gagi.market.service;
+package com.gagi.market.item.service;
 
-import com.gagi.market.api.dto.ItemRequestDto;
-import com.gagi.market.domain.Item;
-import com.gagi.market.domain.ItemRepository;
+import com.gagi.market.item.api.dto.ItemRequestDto;
+import com.gagi.market.item.domain.Item;
+import com.gagi.market.item.domain.ItemRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

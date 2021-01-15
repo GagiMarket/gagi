@@ -1,9 +1,9 @@
-package com.gagi.market.api;
+package com.gagi.market.item.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gagi.market.api.dto.ItemRequestDto;
-import com.gagi.market.domain.Item;
-import com.gagi.market.domain.ItemRepository;
+import com.gagi.market.item.api.dto.ItemRequestDto;
+import com.gagi.market.item.domain.Item;
+import com.gagi.market.item.domain.ItemRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

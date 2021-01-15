@@ -1,4 +1,4 @@
-package com.gagi.market.domain;
+package com.gagi.market.item.domain;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;

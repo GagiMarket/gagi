@@ -1,9 +1,9 @@
-package com.gagi.market.api;
+package com.gagi.market.item.api;
 
-import com.gagi.market.api.dto.ItemRequestDto;
-import com.gagi.market.api.dto.ItemResponseDto;
-import com.gagi.market.domain.Item;
-import com.gagi.market.service.ItemService;
+import com.gagi.market.item.api.dto.ItemRequestDto;
+import com.gagi.market.item.api.dto.ItemResponseDto;
+import com.gagi.market.item.domain.Item;
+import com.gagi.market.item.service.ItemService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +11,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.gagi.market.api.ItemApiController.*;
+import static com.gagi.market.item.api.ItemApiController.*;
 
 @RestController
 @RequestMapping(ITEM_API_URI)
