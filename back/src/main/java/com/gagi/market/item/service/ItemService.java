@@ -18,25 +18,24 @@ public class ItemService {
         this.itemRepository = itemRepository;
     }
 
-    public List<Item> list() {
+    public List<Item> findItemList() {
         return itemRepository.findAll();
-    }
-
-    public Item create(ItemRequestDto requestDto) {
-        return itemRepository.save(requestDto.toEntity());
-    }
-
-    public Item update(Long itemId, ItemRequestDto requestDto) {
-        Item findItem = findItemById(itemId);
-        return findItem.update(requestDto.toEntity());
-    }
-
-    public void delete(Long itemId) {
-        Item findItem = findItemById(itemId);
-        itemRepository.delete(findItem);
     }
 
     public Item findItemById(Long itemId) {
         return itemRepository.findById(itemId).get();
+    }
+
+    public Item createItem(ItemRequestDto requestDto) {
+        return itemRepository.save(requestDto.toEntity());
+    }
+
+    public Item updateItem(Long itemId, ItemRequestDto requestDto) {
+        Item findItem = findItemById(itemId);
+        return findItem.update(requestDto.toEntity());
+    }
+
+    public void deleteItem(Long itemId) {
+        itemRepository.deleteById(itemId);
     }
 }

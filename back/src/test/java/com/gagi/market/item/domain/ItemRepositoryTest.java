@@ -1,6 +1,7 @@
 package com.gagi.market.item.domain;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,8 +16,9 @@ class ItemRepositoryTest {
     @Autowired
     private ItemRepository itemRepository;
 
+    @DisplayName("상품을 생성한다.")
     @Test
-    public void create() throws Exception {
+    public void createItem() throws Exception {
         //given
         //when
         Item saveItem = itemRepository.save(Item.builder()
@@ -31,8 +33,9 @@ class ItemRepositoryTest {
         Assertions.assertThat(saveItem.getItemName()).isEqualTo("m1 맥북 프로");
     }
 
+    @DisplayName("등록된 상품 목록을 조회한다.")
     @Test
-    public void list() throws Exception {
+    public void findItemList() throws Exception {
         //given
         Item saveItem = itemRepository.save(Item.builder()
                 .itemName("m1 맥북 프로")
@@ -49,8 +52,9 @@ class ItemRepositoryTest {
         Assertions.assertThat(list.size()).isEqualTo(1);
     }
 
+    @DisplayName("상품 하나를 삭제한다.")
     @Test
-    public void delete() throws Exception {
+    public void deleteItem() throws Exception {
         //given
         Item saveItem = itemRepository.save(Item.builder()
                 .itemName("m1 맥북 프로")

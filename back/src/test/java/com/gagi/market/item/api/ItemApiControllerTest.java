@@ -6,6 +6,7 @@ import com.gagi.market.item.domain.Item;
 import com.gagi.market.item.domain.ItemRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -47,8 +48,9 @@ class ItemApiControllerTest {
         itemRepository.deleteAll();
     }
 
+    @DisplayName("등록된 상품 목록을 조회한다.")
     @Test
-    public void list() throws Exception {
+    public void findItemList() throws Exception {
         //given
         itemRepository.save(Item.builder()
                 .itemName("m1 맥북 프로")
@@ -68,6 +70,7 @@ class ItemApiControllerTest {
         assertThat(list.size()).isEqualTo(1);
     }
 
+    @DisplayName("상품을 생성한다.")
     @Test
     public void createItem() throws Exception {
         //given
@@ -92,6 +95,7 @@ class ItemApiControllerTest {
         assertThat(list.get(0).getItemCategory()).isEqualTo("노트북");
     }
 
+    @DisplayName("상품 정보를 수정한다.")
     @Test
     public void updateItem() throws Exception {
         //given
@@ -124,6 +128,7 @@ class ItemApiControllerTest {
         assertThat(list.get(0).getItemName()).isEqualTo(expectedItemName);
     }
 
+    @DisplayName("상품 하나를 삭제한다.")
     @Test
     public void deleteItem() throws Exception {
         //given

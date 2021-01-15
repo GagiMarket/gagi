@@ -25,16 +25,16 @@ public class ItemApiController {
     }
 
     @PostMapping
-    public ResponseEntity<ItemResponseDto> create(@RequestBody ItemRequestDto requestDto) {
-        Item item = itemService.create(requestDto);
+    public ResponseEntity<ItemResponseDto> createItem(@RequestBody ItemRequestDto requestDto) {
+        Item item = itemService.createItem(requestDto);
         return ResponseEntity
                 .created(URI.create(ITEM_API_URI + "/" + item.getItemId()))
                 .body(ItemResponseDto.of(item));
     }
 
     @GetMapping
-    public ResponseEntity<List<ItemResponseDto>> list() {
-        List<ItemResponseDto> responses = itemService.list().stream()
+    public ResponseEntity<List<ItemResponseDto>> findItemList() {
+        List<ItemResponseDto> responses = itemService.findItemList().stream()
                 .map(ItemResponseDto::new)
                 .collect(Collectors.toList());
         return ResponseEntity
@@ -51,15 +51,15 @@ public class ItemApiController {
     }
 
     @PutMapping("/{itemId}")
-    public ResponseEntity<ItemResponseDto> update(@PathVariable Long itemId, @RequestBody ItemRequestDto requestDto) {
-        Item item = itemService.update(itemId, requestDto);
+    public ResponseEntity<ItemResponseDto> updateItem(@PathVariable Long itemId, @RequestBody ItemRequestDto requestDto) {
+        Item item = itemService.updateItem(itemId, requestDto);
         return ResponseEntity
                 .created(URI.create(ITEM_API_URI + "/" + item.getItemId()))
                 .body(ItemResponseDto.of(item));
     }
 
     @DeleteMapping("/{itemId}")
-    public void delete(@PathVariable Long itemId) {
-        itemService.delete(itemId);
+    public void deleteItem(@PathVariable Long itemId) {
+        itemService.deleteItem(itemId);
     }
 }
