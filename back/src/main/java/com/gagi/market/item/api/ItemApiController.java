@@ -11,7 +11,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.gagi.market.item.api.ItemApiController.*;
+import static com.gagi.market.item.api.ItemApiController.ITEM_API_URI;
 
 @RestController
 @RequestMapping(ITEM_API_URI)
@@ -40,6 +40,14 @@ public class ItemApiController {
         return ResponseEntity
                 .ok()
                 .body(responses);
+    }
+
+    @GetMapping("/{itemId}")
+    public ResponseEntity<ItemResponseDto> findItemById(@PathVariable Long itemId) {
+        ItemResponseDto findItem = ItemResponseDto.of(itemService.findItemById(itemId));
+        return ResponseEntity
+                .ok()
+                .body(findItem);
     }
 
     @PutMapping("/{itemId}")
