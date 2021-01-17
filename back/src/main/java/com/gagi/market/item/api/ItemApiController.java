@@ -59,7 +59,10 @@ public class ItemApiController {
     }
 
     @DeleteMapping("/{itemId}")
-    public void deleteItem(@PathVariable Long itemId) {
+    public ResponseEntity deleteItem(@PathVariable Long itemId) {
         itemService.deleteItem(itemId);
+        return ResponseEntity
+                .ok()
+                .build();
     }
 }
