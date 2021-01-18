@@ -24,22 +24,14 @@ public class ItemApiController {
         this.itemService = itemService;
     }
 
-    @PostMapping
-    public ResponseEntity<ItemResponseDto> createItem(@RequestBody ItemRequestDto requestDto) {
-        Item item = itemService.createItem(requestDto);
-        return ResponseEntity
-                .created(URI.create(ITEM_API_URI + "/" + item.getItemId()))
-                .body(ItemResponseDto.of(item));
-    }
-
     @GetMapping
     public ResponseEntity<List<ItemResponseDto>> findItems() {
-        List<ItemResponseDto> responses = itemService.findItems().stream()
+        List<ItemResponseDto> findItems = itemService.findItems().stream()
                 .map(ItemResponseDto::new)
                 .collect(Collectors.toList());
         return ResponseEntity
                 .ok()
-                .body(responses);
+                .body(findItems);
     }
 
     @GetMapping("/{itemId}")
@@ -48,6 +40,24 @@ public class ItemApiController {
         return ResponseEntity
                 .ok()
                 .body(findItem);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<ItemResponseDto>> findItemsByItemNameContains(@RequestParam("itemName") String itemName) {
+        List<ItemResponseDto> findItems = itemService.findItemsByItemNameContains(itemName).stream()
+                .map(ItemResponseDto::new)
+                .collect(Collectors.toList());
+        return ResponseEntity
+                .ok()
+                .body(findItems);
+    }
+
+    @PostMapping
+    public ResponseEntity<ItemResponseDto> createItem(@RequestBody ItemRequestDto requestDto) {
+        Item item = itemService.createItem(requestDto);
+        return ResponseEntity
+                .created(URI.create(ITEM_API_URI + "/" + item.getItemId()))
+                .body(ItemResponseDto.of(item));
     }
 
     @PutMapping("/{itemId}")

@@ -70,6 +70,38 @@ class ItemApiControllerTest {
         assertThat(list.size()).isEqualTo(1);
     }
 
+    @DisplayName("이름이 포함된 상품 목록을 조회한다.")
+    @Test
+    public void findItemsByItemNameContains() throws Exception {
+        //given
+        itemRepository.save(Item.builder()
+                .itemName("m1 맥북 프로")
+                .itemDescription("2021 신형 애플 노트북")
+                .itemCategory("노트북")
+                .itemPrice(10000)
+                .itemLocation("강남역")
+                .build());
+        itemRepository.save(Item.builder()
+                .itemName("에어팟 프로")
+                .itemDescription("2021 신형 애플 이어폰")
+                .itemCategory("이어폰")
+                .itemPrice(10000)
+                .itemLocation("강남역")
+                .build());
+        String searchField = "itemName";
+        String searchName = "프로";
+
+        //when
+        String url = LOCALHOST_URI + port + ITEM_API_URI + "/search?" + searchField + "=" + searchName;
+        mvc.perform(
+                get(url)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+        //then
+        List<Item> findItems = itemRepository.findItemsByItemNameContains(searchName);
+        assertThat(findItems.size()).isEqualTo(2);
+    }
+
     @DisplayName("상품을 생성한다.")
     @Test
     public void createItem() throws Exception {
