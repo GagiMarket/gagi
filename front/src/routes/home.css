@@ -1,0 +1,287 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+}
+
+/* Reset CSS */
+a {
+  text-decoration: none;
+  color: inherit;
+  /* color: #000; */
+}
+
+button,
+input,
+textarea {
+  font-family: "DM Sans", sans-serif;
+  font-size: inherit;
+  /* font-size: 16px; */
+}
+
+button:focus,
+button:active,
+input:focus,
+input:active,
+textarea:focus,
+textarea:active {
+  box-shadow: none;
+  outline: none;
+}
+
+ul,
+ol,
+li {
+  list-style-type: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #2b292d;
+  letter-spacing: -0.01em;
+}
+
+.fill-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 140px;
+  height: 48px;
+  background-color: #3040c4;
+  border-radius: 2px;
+
+  font-size: 15px;
+  line-height: 1.6;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  color: #fff;
+
+  transition: opacity 150ms ease-in-out;
+}
+
+.fill-button:hover {
+  opacity: 0.5;
+}
+
+.fill-button.inverted {
+  background-color: #fff;
+  color: #3040c4;
+}
+
+.section {
+  padding: 80px 0;
+}
+
+.section-category {
+  display: block;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-size: 34px;
+  line-height: 1.0588235294;
+  letter-spacing: -0.03em;
+  color: #2b292d;
+  margin-bottom: 24px;
+}
+
+/* Service Section */
+.service {
+  background-color: #f4f5f7;
+  padding: 80px 0;
+}
+
+.service .col-md-6:first-child {
+  margin-bottom: 40px;
+}
+
+.service-title {
+  font-size: 22px;
+  line-height: 1.36363636;
+  letter-spacing: -0.04em;
+  color: #2b292d;
+  margin-bottom: 16px;
+}
+
+/* Program Section */
+.program .row:first-child {
+  margin-bottom: 32px;
+}
+
+.program .col-md-4 {
+  margin-bottom: 20px;
+}
+
+.program .col-md-4:last-child {
+  margin-bottom: 0;
+}
+
+.program .section-category {
+  color: #009b4d;
+}
+
+.program-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 24px 0 32px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.05),
+    inset 0px 1px 0px rgba(255, 255, 255, 0.1);
+  transition: background-color 150ms ease-in-out, color 150ms ease-in-out,
+    box-shadow 150ms ease-in-out;
+}
+
+.program-card:hover {
+  color: #fff;
+  background: slateblue;
+  box-shadow: 0px 13px 18px rgba(0, 0, 0, 0.15),
+    0px 11px 55px rgba(0, 0, 0, 0.07);
+}
+
+.program-card img {
+  display: block;
+  height: 195px;
+  width: auto;
+  margin: 0 auto 16px;
+}
+
+.program-card strong {
+  font-size: 18px;
+  line-height: 1.33333333;
+  letter-spacing: -0.02em;
+}
+
+/* Footer Section */
+.footer {
+  padding: 24px 0;
+}
+
+.footer-link {
+  margin-bottom: 8px;
+}
+
+.footer-link:last-child {
+  margin-bottom: 0;
+}
+
+.footer-link a {
+  font-size: 14px;
+  line-height: 1.7142857143;
+  color: #807f81;
+}
+
+/* >= 768px (Desktop) */
+@media screen and (min-width: 768px) {
+  /* Reset CSS */
+  p {
+    font-size: 22px;
+    line-height: 1.3636363636;
+  }
+
+  .fill-button {
+    width: 160px;
+    height: 56px;
+
+    font-size: 18px;
+  }
+
+  .section {
+    padding-bottom: 96px;
+  }
+
+  .section-category {
+    font-size: 22px;
+    line-height: 1.0909090909;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-size: 56px;
+    line-height: 1;
+    margin-bottom: 32px;
+  }
+
+  /* Service Section */
+  .service-content:first-child {
+    width: 370px;
+    margin-bottom: 0;
+  }
+
+  .service-title {
+    font-size: 26px;
+    line-height: 34px;
+  }
+
+  .service .col-md-6:first-child {
+    margin-bottom: 0;
+  }
+
+  .service-desc {
+    font-size: 22px;
+    line-height: 32px;
+  }
+
+  /* Program Section */
+  .program {
+    text-align: center;
+  }
+
+  .program .row:first-child {
+    margin-bottom: 72px;
+  }
+
+  .program-card img {
+    margin-bottom: 24px;
+  }
+
+  .program-card strong {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+
+  /* Footer Section */
+  .footer {
+    padding: 16px 0;
+  }
+
+  .footer-links {
+    display: flex;
+    align-items: center;
+  }
+
+  .footer-link {
+    margin-bottom: 0;
+    margin-right: 16px;
+  }
+
+  .footer-link:last-child {
+    margin-right: 0;
+  }
+
+  .footer-link a {
+    font-size: 14px;
+    line-height: 1.7142857143;
+    color: #807f81;
+  }
+}
+
+/* Custom Grid System - Fix Container Width */
+@media screen and (min-width: 1200px) {
+  .container {
+    max-width: 960px !important;
+  }
+}

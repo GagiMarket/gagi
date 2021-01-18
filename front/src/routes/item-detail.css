@@ -69,6 +69,7 @@ input[type="number"] {
 
 .product-image-viewer {
   width: 540px;
+  margin-right: 60px;
 }
 
 .product-image-viewer .main-image {
