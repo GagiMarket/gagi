@@ -3,6 +3,8 @@ package com.gagi.market.item.service;
 import com.gagi.market.item.api.dto.ItemRequestDto;
 import com.gagi.market.item.domain.Item;
 import com.gagi.market.item.domain.ItemRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +22,10 @@ public class ItemService {
 
     public List<Item> findItems() {
         return itemRepository.findAll();
+    }
+
+    public Page<Item> findItems(Pageable pageable) {
+        return itemRepository.findAll(pageable);
     }
 
     public Item findItemById(Long itemId) {

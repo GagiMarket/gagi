@@ -4,6 +4,8 @@ import com.gagi.market.item.api.dto.ItemRequestDto;
 import com.gagi.market.item.api.dto.ItemResponseDto;
 import com.gagi.market.item.domain.Item;
 import com.gagi.market.item.service.ItemService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,10 +27,9 @@ public class ItemApiController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ItemResponseDto>> findItems() {
-        List<ItemResponseDto> findItems = itemService.findItems().stream()
-                .map(ItemResponseDto::new)
-                .collect(Collectors.toList());
+    public ResponseEntity<Page<ItemResponseDto>> findItems(Pageable pageable) {
+        Page<ItemResponseDto> findItems = itemService.findItems(pageable)
+                .map(ItemResponseDto::new);
         return ResponseEntity
                 .ok()
                 .body(findItems);
