@@ -1,6 +1,6 @@
-package com.gagi.market.api.dto;
+package com.gagi.market.item.api.dto;
 
-import com.gagi.market.domain.Item;
+import com.gagi.market.item.domain.Item;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,4 +1,4 @@
-package com.gagi.market.domain;
+package com.gagi.market.item.domain;
 
 import lombok.Builder;
 import lombok.Getter;
