@@ -33,8 +33,8 @@ public class ItemApiController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ItemResponseDto>> findItemList() {
-        List<ItemResponseDto> responses = itemService.findItemList().stream()
+    public ResponseEntity<List<ItemResponseDto>> findItems() {
+        List<ItemResponseDto> responses = itemService.findItems().stream()
                 .map(ItemResponseDto::new)
                 .collect(Collectors.toList());
         return ResponseEntity

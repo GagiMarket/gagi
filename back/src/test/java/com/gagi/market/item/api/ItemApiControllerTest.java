@@ -50,7 +50,7 @@ class ItemApiControllerTest {
 
     @DisplayName("등록된 상품 목록을 조회한다.")
     @Test
-    public void findItemList() throws Exception {
+    public void findItems() throws Exception {
         //given
         itemRepository.save(Item.builder()
                 .itemName("m1 맥북 프로")

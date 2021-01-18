@@ -23,7 +23,7 @@ class ItemServiceTest {
 
     @DisplayName("등록된 상품 목록을 조회한다.")
     @Test
-    public void findItemList() throws Exception {
+    public void findItems() throws Exception {
         //given
         itemRepository.save(ItemRequestDto.builder()
                 .itemName("m1 맥북 프로")
@@ -35,7 +35,7 @@ class ItemServiceTest {
                 .toEntity());
 
         //when
-        List<Item> list = itemService.findItemList();
+        List<Item> list = itemService.findItems();
 
         //then
         Assertions.assertThat(list.size()).isEqualTo(1);
