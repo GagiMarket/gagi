@@ -72,4 +72,39 @@ class ItemRepositoryTest {
         List<Item> list = itemRepository.findAll();
         Assertions.assertThat(list.size()).isEqualTo(0);
     }
+
+    @DisplayName("이름이 포함된 상품을 조회한다")
+    @Test
+    public void findItemListByName() throws Exception {
+        //given
+        itemRepository.save(Item.builder()
+                .itemName("m1 맥북 프로")
+                .itemDescription("2021 신형 애플 노트북")
+                .itemCategory("노트북")
+                .itemPrice(10000)
+                .itemLocation("강남역")
+                .build());
+
+        itemRepository.save(Item.builder()
+                .itemName("m2 맥북 프로")
+                .itemDescription("2022 신형 애플 노트북")
+                .itemCategory("노트북")
+                .itemPrice(20000)
+                .itemLocation("서울역")
+                .build());
+
+        itemRepository.save(Item.builder()
+                .itemName("에어팟 프로")
+                .itemDescription("2022 신형 애플 노트북")
+                .itemCategory("노트북")
+                .itemPrice(20000)
+                .itemLocation("서울역")
+                .build());
+
+        //when
+        List<Item> findItemList = itemRepository.findItemsByItemNameContains("프로");
+
+        //then
+        Assertions.assertThat(findItemList.size()).isEqualTo(3);
+    }
 }
