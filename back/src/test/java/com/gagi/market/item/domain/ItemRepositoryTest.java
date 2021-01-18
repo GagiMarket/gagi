@@ -73,7 +73,7 @@ class ItemRepositoryTest {
         Assertions.assertThat(list.size()).isEqualTo(0);
     }
 
-    @DisplayName("이름이 포함된 상품을 조회한다")
+    @DisplayName("이름이 포함된 상품 목록을 조회한다.")
     @Test
     public void findItemListByName() throws Exception {
         //given

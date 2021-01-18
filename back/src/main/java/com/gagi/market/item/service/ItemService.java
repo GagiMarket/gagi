@@ -26,6 +26,10 @@ public class ItemService {
         return itemRepository.findById(itemId).get();
     }
 
+    public List<Item> findItemsByItemNameContains(String itemName) {
+        return itemRepository.findItemsByItemNameContains(itemName);
+    }
+
     public Item createItem(ItemRequestDto requestDto) {
         return itemRepository.save(requestDto.toEntity());
     }
