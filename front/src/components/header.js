@@ -13,6 +13,7 @@ function Header(){
             </div>
             <div className="nav">
               <Link className="nav-btn" to="/">Home</Link>
+              <Link className="nav-btn" to="/login">Login</Link>
               <Link className="nav-btn" to="/post">Post</Link>
               <Link className="nav-btn" to="/itemlist">ItemList</Link>
             </div>

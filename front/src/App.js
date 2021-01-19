@@ -8,6 +8,7 @@ import Home from "./routes/home";
 import Post from "./routes/post";
 import ItemList from "./routes/item-list";
 import Detail from "./routes/item-detail";
+import Login from "./routes/login";
 
 class App extends React.Component {
 
@@ -17,6 +18,7 @@ class App extends React.Component {
       <HashRouter>
         <Route path="/" exact={true} component={Home}/>
         <Route path="/post" component={Post}/>
+        <Route path="/login" component={Login}/>
         <Route path="/itemlist" exact={true} component={ItemList}/>
         <Route path="/itemlist/detail/:itemId" component={Detail}/>
       </HashRouter>
