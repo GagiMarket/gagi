@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.gagi'
-version = '0.0.1-SNAPSHOT-'+new Date().format("yyyyMMddHHmmss")
+version = '0.0.1-SNAPSHOT-'+new Date().format("yyyyMMddHH")
 sourceCompatibility = '11'
 
 repositories {
