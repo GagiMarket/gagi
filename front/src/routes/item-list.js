@@ -7,14 +7,12 @@ import List from '../components/list';
 class ItemList extends React.Component {
 
   state = {    
-    isLoading: true,
     items: []
   }
 
   getPostListItem = async() =>{    
-    // const {data : {data : {items}}} = await axios.get("https://yts.mx/api/v2/list_movies.json?sort_by=rating");
     const {data: {items}} = await axios.get("http://ec2-3-36-83-107.ap-northeast-2.compute.amazonaws.com:8080/api/items");
-    this.setState({items:items, isLoading:false});
+    this.setState({items:items});
   }
 
   async componentDidMount(){
