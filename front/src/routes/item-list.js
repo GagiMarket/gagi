@@ -1,26 +1,29 @@
 import React, { Fragment } from 'react';
+import axios from 'axios';
 import './item-list.css';
 import Header from '../components/header';
 import List from '../components/list';
 
 class ItemList extends React.Component {
 
-  // state = {
-  //   list-items: []
-  // }
+  state = {    
+    isLoading: true,
+    items: []
+  }
 
-  // getPostListItem = async() =>{    
-  //   const {data : {data : {items}}} = await axios.get("https://yts.mx/api/v2/list_movies.json?sort_by=rating");
-  //   this.setState({list-items:items});
-  // }
+  getPostListItem = async() =>{    
+    // const {data : {data : {items}}} = await axios.get("https://yts.mx/api/v2/list_movies.json?sort_by=rating");
+    const {data: {items}} = await axios.get("http://ec2-3-36-83-107.ap-northeast-2.compute.amazonaws.com:8080/api/items");
+    this.setState({items:items, isLoading:false});
+  }
 
-  // async componentDidMount(){
-  //   this.getPostListItem();
-  // }
+  async componentDidMount(){
+    this.getPostListItem();
+  }
 
   render()
   {
-    // const {list-items} = this.state;
+    const {items} = this.state;
 
     return (
       <Fragment>
@@ -34,26 +37,17 @@ class ItemList extends React.Component {
                 <h1 className="list-title">등록된 상품 보기</h1>
               </div>     
 
-              {/* {movies.map(movie => (
+              {items.map(item => (
                 <List 
-                  key={movie.id}
-                  id={movie.id}
-                  year={movie.year}
-                  title={movie.title}
-                  summary={movie.summary}
-                  poster={movie.medium_cover_image}
-                  genres={movie.genres}
+                  key={item.itemId}
+                  itemId={item.id}
+                  itemNameear={item.itemName}
+                  itemDescription={item.itemDescription}
+                  itemCategory={item.itemCategory}
+                  itemPrice={item.itemPrice}
+                  itemLocation={item.itemLocation}
                 />
-              ))} */}
-              
-              <List/>
-              <List/>
-              <List/>
-              <List/>
-              <List/>
-              <List/>
-              <List/>
-              <List/>
+              ))}
             </div>
           </div>
         </section>
