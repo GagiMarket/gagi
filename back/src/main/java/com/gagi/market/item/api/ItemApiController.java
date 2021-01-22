@@ -18,7 +18,7 @@ import static com.gagi.market.item.api.ItemApiController.ITEM_API_URI;
 @RestController
 @RequestMapping(ITEM_API_URI)
 public class ItemApiController {
-    public static final String ITEM_API_URI = "/api/items";
+    public static final String ITEM_API_URI = "/api/v1.0/items";
 
     private final ItemService itemService;
 

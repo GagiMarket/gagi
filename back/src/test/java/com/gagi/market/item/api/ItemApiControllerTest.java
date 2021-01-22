@@ -27,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class ItemApiControllerTest {
     private static final String LOCALHOST_URI = "http://localhost:";
-    private static final String ITEM_API_URI = "/api/items";
+    private static final String ITEM_API_URI = "/api/v1.0/items";
 
     @LocalServerPort private int port;
     @Autowired private WebApplicationContext context;
