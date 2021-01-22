@@ -29,7 +29,7 @@ function List({itemId, itemName, itemDescription, itemCategory, itemLocation, it
                 {itemName}
               </div>
               <div className="list-item-price">
-                {itemPrice}
+                {itemPrice}원
               </div>
             </div>
           </a>

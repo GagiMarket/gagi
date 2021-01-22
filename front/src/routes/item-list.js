@@ -6,13 +6,15 @@ import List from '../components/list';
 
 class ItemList extends React.Component {
 
-  state = {    
-    items: []
-  }
+    state = {    
+      isLoading: true,
+      list_items: []
+    }
 
-  getPostListItem = async() =>{    
-    const {data: {items}} = await axios.get("http://ec2-3-36-83-107.ap-northeast-2.compute.amazonaws.com:8080/api/items");
-    this.setState({items:items});
+  getPostListItem = async() => {    
+    const items = await axios.get("http://ec2-3-36-83-107.ap-northeast-2.compute.amazonaws.com:8080/api/items");
+    // console.log(items.data);
+    this.setState({list_items:items.data, isLoading:false});
   }
 
   async componentDidMount(){
@@ -21,7 +23,7 @@ class ItemList extends React.Component {
 
   render()
   {
-    const {items} = this.state;
+    const {isLoading, list_items} = this.state;
 
     return (
       <Fragment>
@@ -33,19 +35,31 @@ class ItemList extends React.Component {
 
               <div className="col-12">
                 <h1 className="list-title">등록된 상품 보기</h1>
-              </div>     
+              </div>    
 
-              {items.map(item => (
-                <List 
-                  key={item.itemId}
-                  itemId={item.id}
-                  itemNameear={item.itemName}
-                  itemDescription={item.itemDescription}
-                  itemCategory={item.itemCategory}
-                  itemPrice={item.itemPrice}
-                  itemLocation={item.itemLocation}
-                />
-              ))}
+              {isLoading ?  
+                (
+                  <div className="col-12">
+                    <span>Loading...</span>
+                  </div>
+                )
+                : 
+                ( 
+                  <>
+                    {this.state && list_items && list_items.map(item => (
+                      <List 
+                        key={item.itemId}
+                        itemId={item.itemId}
+                        itemName={item.itemName}
+                        itemDescription={item.itemDescription}
+                        itemCategory={item.itemCategory}
+                        itemPrice={item.itemPrice}
+                        itemLocation={item.itemLocation}
+                      />
+                    ))}
+                  </>
+                )
+              }
             </div>
           </div>
         </section>
