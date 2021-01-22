@@ -136,7 +136,7 @@ class ItemRepositoryTest {
                 .build());
 
         //when
-        List<Item> findItemList = itemRepository.findItemsByItemNameContains("프로");
+        List<Item> findItemList = itemRepository.findItemsByItemNameContains("프로", null).getContent();
 
         //then
         assertThat(findItemList.size()).isEqualTo(3);

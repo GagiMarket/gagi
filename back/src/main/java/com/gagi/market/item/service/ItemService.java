@@ -32,8 +32,8 @@ public class ItemService {
         return itemRepository.findById(itemId).get();
     }
 
-    public List<Item> findItemsByItemNameContains(String itemName) {
-        return itemRepository.findItemsByItemNameContains(itemName);
+    public Page<Item> findItemsByItemNameContains(String itemName, Pageable pageable) {
+        return itemRepository.findItemsByItemNameContains(itemName, pageable);
     }
 
     public Item createItem(ItemRequestDto requestDto) {

@@ -10,8 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.gagi.market.item.api.ItemApiController.ITEM_API_URI;
 
@@ -44,10 +42,9 @@ public class ItemApiController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<ItemResponseDto>> findItemsByItemNameContains(@RequestParam("itemName") String itemName) {
-        List<ItemResponseDto> findItems = itemService.findItemsByItemNameContains(itemName).stream()
-                .map(ItemResponseDto::new)
-                .collect(Collectors.toList());
+    public ResponseEntity<Page<ItemResponseDto>> findItemsByItemNameContains(@RequestParam("itemName") String itemName, Pageable pageable) {
+        Page<ItemResponseDto> findItems = itemService.findItemsByItemNameContains(itemName, pageable)
+                .map(ItemResponseDto::new);
         return ResponseEntity
                 .ok()
                 .body(findItems);

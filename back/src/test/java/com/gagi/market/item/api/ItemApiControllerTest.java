@@ -98,7 +98,7 @@ class ItemApiControllerTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
         //then
-        List<Item> findItems = itemRepository.findItemsByItemNameContains(searchName);
+        List<Item> findItems = itemRepository.findItemsByItemNameContains(searchName, null).getContent();
         assertThat(findItems.size()).isEqualTo(2);
     }
 

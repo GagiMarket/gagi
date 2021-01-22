@@ -62,7 +62,7 @@ class ItemServiceTest {
                 .build()
                 .toEntity());
         //when
-        List<Item> findItems = itemService.findItemsByItemNameContains("프로");
+        List<Item> findItems = itemService.findItemsByItemNameContains("프로", null).getContent();
 
         //then
         Assertions.assertThat(findItems.size()).isEqualTo(2);
