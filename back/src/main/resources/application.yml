@@ -1,0 +1,27 @@
+spring:
+  profiles:
+    active: local
+  jpa:
+    properties:
+      hibernate:
+        default_batch_fetch_size: 100
+logging:
+  level:
+    org.hibernamte.SQL: debug
+
+# local
+---
+spring:
+  profiles: local
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+  h2:
+    console:
+      enabled: true
+
+# real
+---
+spring:
+  profiles: real
+  include: real-db
