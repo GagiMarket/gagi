@@ -23,7 +23,7 @@ class ItemServiceTest {
 
     @DisplayName("등록된 상품 목록을 조회한다.")
     @Test
-    public void findItemList() throws Exception {
+    public void findItems() throws Exception {
         //given
         itemRepository.save(ItemRequestDto.builder()
                 .itemName("m1 맥북 프로")
@@ -35,10 +35,37 @@ class ItemServiceTest {
                 .toEntity());
 
         //when
-        List<Item> list = itemService.findItemList();
+        List<Item> list = itemService.findItems();
 
         //then
         Assertions.assertThat(list.size()).isEqualTo(1);
+    }
+
+    @DisplayName("이름이 포함된 상품 목록을 조회한다.")
+    @Test
+    public void findItemsByItemNameContains() throws Exception {
+        //given
+        itemRepository.save(ItemRequestDto.builder()
+                .itemName("m1 맥북 프로")
+                .itemDescription("2021 신형 애플 노트북")
+                .itemCategory("노트북")
+                .itemPrice(10000)
+                .itemLocation("강남역")
+                .build()
+                .toEntity());
+        itemRepository.save(ItemRequestDto.builder()
+                .itemName("에어팟 프로")
+                .itemDescription("2021 신형 애플 이어폰")
+                .itemCategory("이어폰")
+                .itemPrice(30000)
+                .itemLocation("강남역")
+                .build()
+                .toEntity());
+        //when
+        List<Item> findItems = itemService.findItemsByItemNameContains("프로", null).getContent();
+
+        //then
+        Assertions.assertThat(findItems.size()).isEqualTo(2);
     }
 
     @DisplayName("상품을 생성한다.")

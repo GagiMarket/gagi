@@ -4,19 +4,19 @@ import com.gagi.market.item.api.dto.ItemRequestDto;
 import com.gagi.market.item.api.dto.ItemResponseDto;
 import com.gagi.market.item.domain.Item;
 import com.gagi.market.item.service.ItemService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.gagi.market.item.api.ItemApiController.ITEM_API_URI;
 
 @RestController
 @RequestMapping(ITEM_API_URI)
 public class ItemApiController {
-    public static final String ITEM_API_URI = "/api/items";
+    public static final String ITEM_API_URI = "/api/v1.0/items";
 
     private final ItemService itemService;
 
@@ -24,22 +24,13 @@ public class ItemApiController {
         this.itemService = itemService;
     }
 
-    @PostMapping
-    public ResponseEntity<ItemResponseDto> createItem(@RequestBody ItemRequestDto requestDto) {
-        Item item = itemService.createItem(requestDto);
-        return ResponseEntity
-                .created(URI.create(ITEM_API_URI + "/" + item.getItemId()))
-                .body(ItemResponseDto.of(item));
-    }
-
     @GetMapping
-    public ResponseEntity<List<ItemResponseDto>> findItemList() {
-        List<ItemResponseDto> responses = itemService.findItemList().stream()
-                .map(ItemResponseDto::new)
-                .collect(Collectors.toList());
+    public ResponseEntity<Page<ItemResponseDto>> findItems(Pageable pageable) {
+        Page<ItemResponseDto> findItems = itemService.findItems(pageable)
+                .map(ItemResponseDto::new);
         return ResponseEntity
                 .ok()
-                .body(responses);
+                .body(findItems);
     }
 
     @GetMapping("/{itemId}")
@@ -48,6 +39,23 @@ public class ItemApiController {
         return ResponseEntity
                 .ok()
                 .body(findItem);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<Page<ItemResponseDto>> findItemsByItemNameContains(@RequestParam("itemName") String itemName, Pageable pageable) {
+        Page<ItemResponseDto> findItems = itemService.findItemsByItemNameContains(itemName, pageable)
+                .map(ItemResponseDto::new);
+        return ResponseEntity
+                .ok()
+                .body(findItems);
+    }
+
+    @PostMapping
+    public ResponseEntity<ItemResponseDto> createItem(@RequestBody ItemRequestDto requestDto) {
+        Item item = itemService.createItem(requestDto);
+        return ResponseEntity
+                .created(URI.create(ITEM_API_URI + "/" + item.getItemId()))
+                .body(ItemResponseDto.of(item));
     }
 
     @PutMapping("/{itemId}")

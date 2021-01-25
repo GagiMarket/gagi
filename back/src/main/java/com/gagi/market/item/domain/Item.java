@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor
@@ -22,6 +23,8 @@ public class Item {
     private String itemCategory;
     private int itemPrice;
     private String itemLocation;
+    private LocalDateTime registerDate;
+    private LocalDateTime updateDate;
 
     @Builder
     public Item(String itemName, String itemDescription, String itemCategory, int itemPrice, String itemLocation) {
@@ -30,6 +33,8 @@ public class Item {
         this.itemCategory = itemCategory;
         this.itemPrice = itemPrice;
         this.itemLocation = itemLocation;
+        this.registerDate = LocalDateTime.now();
+        this.updateDate = LocalDateTime.now();
     }
 
     //==비즈니스 로직==//
@@ -39,6 +44,7 @@ public class Item {
         this.itemCategory = item.itemCategory;
         this.itemPrice = item.itemPrice;
         this.itemLocation = item.itemLocation;
+        this.updateDate = LocalDateTime.now();
         return this;
     }
 }
