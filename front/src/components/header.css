@@ -14,7 +14,7 @@
   font-size: 26px;
   line-height: 1.2;
   letter-spacing: -0.02em;
-  color: #212121;
+  color: #e8e8e8;
   font-weight: bold;
 }
 
@@ -27,5 +27,6 @@
 }
 
 .nav-btn {
-  margin-right: 20px;
+  margin-left: 40px;
+  color: #e8e8e8;
 }
