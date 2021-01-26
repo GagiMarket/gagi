@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -17,7 +18,7 @@ class MemberRepositoryTest {
     @Autowired
     MemberRepository memberRepository;
 
-    @DisplayName("사용자를 생성한다.")
+    @DisplayName("사용자를 등록한다.")
     @Test
     public void createMember() throws Exception {
         //given
@@ -53,6 +54,25 @@ class MemberRepositoryTest {
 
         //then
         assertThat(result.size()).isEqualTo(1);
+    }
+
+    @DisplayName("사용자 이메일로 등록된 사용자를 조회한다.")
+    @Test
+    public void findMemberByMemberEmail() throws Exception {
+        //given
+        String memberEmail = "member1@gagi.com";
+        Member member = Member.builder()
+                .memberEmail(memberEmail)
+                .memberPw("test")
+                .memberPhoneNumber("010-1234-5678")
+                .memberAddress("서울특별시 가지동 가지마켓 2층")
+                .build();
+        memberRepository.save(member);
+        //when
+        Optional<Member> findMember = memberRepository.findMemberByMemberEmail(memberEmail);
+
+        //then
+        assertThat(findMember.get().getMemberEmail()).isEqualTo(memberEmail);
     }
 
     @DisplayName("사용자 정보를 수정한다.")
@@ -105,7 +125,7 @@ class MemberRepositoryTest {
                 .build();
         memberRepository.save(member);
         //when
-        memberRepository.deleteByMemberEmail(member.getMemberEmail());
+        memberRepository.deleteMemberByMemberEmail(member.getMemberEmail());
         Member findMember = memberRepository.findById(member.getMemberId()).orElse(null);
         //then
         assertThat(findMember).isEqualTo(null);
