@@ -76,9 +76,9 @@ class MemberRepositoryTest {
         assertThat(updateMember.getMemberPw()).isEqualTo(updatePw);
     }
 
-    @DisplayName("등록된 사용자를 삭제한다.")
+    @DisplayName("사용자 Id 로 사용자를 삭제한다.")
     @Test
-    public void deleteMember() throws Exception {
+    public void deleteMemberById() throws Exception {
         //given
         Member member = Member.builder()
                 .memberEmail("member1@gagi.com")
@@ -89,6 +89,23 @@ class MemberRepositoryTest {
         memberRepository.save(member);
         //when
         memberRepository.deleteById(member.getMemberId());
+        Member findMember = memberRepository.findById(member.getMemberId()).orElse(null);
+        //then
+        assertThat(findMember).isEqualTo(null);
+    }
+
+    @DisplayName("사용자 Email 로 사용자를 삭제한다.")
+    @Test
+    public void deleteMemberByMemberEmail() throws Exception {
+        Member member = Member.builder()
+                .memberEmail("member1@gagi.com")
+                .memberPw("test")
+                .memberPhoneNumber("010-1234-5678")
+                .memberAddress("서울특별시 가지동 가지마켓 2층")
+                .build();
+        memberRepository.save(member);
+        //when
+        memberRepository.deleteByMemberEmail(member.getMemberEmail());
         Member findMember = memberRepository.findById(member.getMemberId()).orElse(null);
         //then
         assertThat(findMember).isEqualTo(null);
