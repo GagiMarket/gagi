@@ -18,7 +18,7 @@ class MemberRepositoryTest {
     @Autowired
     MemberRepository memberRepository;
 
-    @DisplayName("사용자를 등록한다.")
+    @DisplayName("회원을 등록한다.")
     @Test
     public void createMember() throws Exception {
         //given
@@ -38,7 +38,7 @@ class MemberRepositoryTest {
         assertThat(result.getMemberAddress()).isEqualTo(member.getMemberAddress());
     }
 
-    @DisplayName("등록된 사용자 전체를 조회한다.")
+    @DisplayName("등록된 회원 정보 전체를 조회한다.")
     @Test
     public void findMembers() throws Exception {
         //given
@@ -56,7 +56,7 @@ class MemberRepositoryTest {
         assertThat(result.size()).isEqualTo(1);
     }
 
-    @DisplayName("사용자 이메일로 등록된 사용자를 조회한다.")
+    @DisplayName("회원 이메일로 등록된 회원 정보를 조회한다.")
     @Test
     public void findMemberByMemberEmail() throws Exception {
         //given
@@ -75,7 +75,7 @@ class MemberRepositoryTest {
         assertThat(findMember.get().getMemberEmail()).isEqualTo(memberEmail);
     }
 
-    @DisplayName("사용자 정보를 수정한다.")
+    @DisplayName("회원 정보를 수정한다.")
     @Test
     public void updateMember() throws Exception {
         //given
@@ -96,7 +96,7 @@ class MemberRepositoryTest {
         assertThat(updateMember.getMemberPw()).isEqualTo(updatePw);
     }
 
-    @DisplayName("사용자 Id 로 사용자를 삭제한다.")
+    @DisplayName("회원 Id 로 회원 정보를 삭제한다.")
     @Test
     public void deleteMemberById() throws Exception {
         //given
@@ -114,7 +114,7 @@ class MemberRepositoryTest {
         assertThat(findMember).isEqualTo(null);
     }
 
-    @DisplayName("사용자 Email 로 사용자를 삭제한다.")
+    @DisplayName("회원 Email 로 회원 정보를 삭제한다.")
     @Test
     public void deleteMemberByMemberEmail() throws Exception {
         Member member = Member.builder()
