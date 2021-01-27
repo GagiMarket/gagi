@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class GeneralMemberService implements MemberService {
 
-    MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
 
     public GeneralMemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
