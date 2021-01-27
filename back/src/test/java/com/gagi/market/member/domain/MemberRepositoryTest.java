@@ -38,6 +38,25 @@ class MemberRepositoryTest {
         assertThat(result.getMemberAddress()).isEqualTo(member.getMemberAddress());
     }
 
+    @DisplayName("이메일과 비밀번호가 일치하는 회원 조회를 성공한다.")
+    @Test
+    public void findMemberByMemberEmailAndMemberPw() throws Exception {
+        //given
+        String memberEmail = "member1@gagi.com";
+        String memberPw = "test";
+        Member member = memberRepository.save(Member.builder()
+                .memberEmail(memberEmail)
+                .memberPw(memberPw)
+                .memberPhoneNumber("010-1234-5678")
+                .memberAddress("서울특별시 가지동 가지마켓 2층")
+                .build());
+        //when
+        Optional<Member> findMember = memberRepository.findMemberByMemberEmailAndMemberPw(memberEmail, memberPw);
+
+        //then
+        assertThat(findMember.isPresent()).isTrue();
+    }
+
     @DisplayName("등록된 회원 정보 전체를 조회한다.")
     @Test
     public void findMembers() throws Exception {
