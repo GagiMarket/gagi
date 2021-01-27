@@ -6,8 +6,6 @@ import java.util.List;
 
 public interface MemberService {
     Member createMember(Member member);
-    void login(String memberEmail, String memberPw);
-    void logout();
     List<Member> findMembers();
     Member findMemberByMemberEmail(String memberEmail);
     Member updateMember(Member member);

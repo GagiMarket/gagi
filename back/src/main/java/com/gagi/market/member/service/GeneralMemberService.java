@@ -32,16 +32,6 @@ public class GeneralMemberService implements MemberService {
     }
 
     @Override
-    public void login(String memberEmail, String memberPw) {
-
-    }
-
-    @Override
-    public void logout() {
-
-    }
-
-    @Override
     public List<Member> findMembers() {
         return memberRepository.findAll();
     }
