@@ -39,7 +39,7 @@ public class GeneralMemberService implements MemberService {
     @Override
     public Member findMemberByMemberEmail(String memberEmail) {
         return memberRepository.findMemberByMemberEmail(memberEmail)
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 사용자입니다."));
+                .orElse(null);
     }
 
     @Transactional
