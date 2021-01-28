@@ -104,15 +104,16 @@ class GeneralMemberServiceTest {
     @Test
     public void updateMember() throws Exception {
         //given
+        String memberEmail = "member1@gagi.com";
         Member member = memberRepository.save(Member.builder()
-                .memberEmail("member1@gagi.com")
+                .memberEmail(memberEmail)
                 .memberPw("test")
                 .memberPhoneNumber("010-1234-5678")
                 .memberAddress("서울특별시 가지동 가지마켓 2층")
                 .build());
         //when
         String updatePw = "1234";
-        Member updateMember = memberService.updateMember(Member.builder()
+        Member updateMember = memberService.updateMember(memberEmail, Member.builder()
                 .memberEmail("member1@gagi.com")
                 .memberPw(updatePw)
                 .build());
