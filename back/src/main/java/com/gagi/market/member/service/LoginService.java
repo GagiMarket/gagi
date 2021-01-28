@@ -1,6 +1,8 @@
 package com.gagi.market.member.service;
 
+import com.gagi.market.member.api.dto.SessionMember;
+
 public interface LoginService {
-    void login(String memberEmail, String memberPw);
+    SessionMember login(String memberEmail, String memberPw);
     void logout();
 }
