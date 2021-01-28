@@ -8,6 +8,6 @@ public interface MemberService {
     Member createMember(Member member);
     List<Member> findMembers();
     Member findMemberByMemberEmail(String memberEmail);
-    Member updateMember(Member member);
+    Member updateMember(String memberEmail, Member member);
     void deleteMemberByMemberEmail(String memberEmail);
 }

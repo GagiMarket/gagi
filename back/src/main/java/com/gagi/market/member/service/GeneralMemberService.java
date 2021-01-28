@@ -44,8 +44,8 @@ public class GeneralMemberService implements MemberService {
 
     @Transactional
     @Override
-    public Member updateMember(Member member) {
-        return findMemberByMemberEmail(member.getMemberEmail())
+    public Member updateMember(String memberEmail, Member member) {
+        return findMemberByMemberEmail(memberEmail)
                 .update(member);
     }
 
