@@ -4,13 +4,43 @@ import Header from '../components/header';
 
 class Post extends React.Component {
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+
+    this.handleAccount({
+      itemName: e.target.itemName.value,
+      itemDescription: e.target.itemDescription.value,
+      itemCategory: e.target.itemCategory.value,
+      itemPrice: e.target.itemPrice.value,
+      itemLocation: e.target.itemLocation.value
+    });
+  }
+
+  handleAccount = (item_info) => {
+    fetch('http://ec2-3-36-83-107.ap-northeast-2.compute.amazonaws.com:8080/api/items', {
+      method: 'post',	
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"	
+      },
+      body: JSON.stringify(item_info)
+    })
+      .then(res => res.json())
+      .then(obj => {	
+        console.log(obj);
+        
+        if(obj) {
+          alert("상품 등록이 완료되었습니다.");
+        }
+      });
+  }
+
   render()
   {
     return (
       <>
         <Header/>
         <section className="post-item">
-          <form className="container" action="" method="POST">
+          <form className="container" onSubmit={this.handleSubmit}>
             <div className="row">
 
               <div className="col-12">
@@ -48,12 +78,12 @@ class Post extends React.Component {
               </div>
 
               <div className="col-12 col-md-6">
-                <select className="item-location" name="itemLoacation" id="">
+                <select className="item-location" name="itemLocation" id="">
                   <option value="서울">서울</option>
-                  <option value="서울">경기</option>
-                  <option value="서울">부산</option>
-                  <option value="서울">대구</option>
-                  <option value="서울">제주</option>
+                  <option value="경기">경기</option>
+                  <option value="부산">부산</option>
+                  <option value="대구">대구</option>
+                  <option value="제주">제주</option>
                 </select>
               </div>
               
@@ -66,7 +96,9 @@ class Post extends React.Component {
               </div>
 
               <div className="col-12">
-                <button className="post-btn" type="submit">등록 완료</button>
+                <button className="post-btn" type="submit">
+                  등록 완료
+                </button>
               </div>
 
             </div>
