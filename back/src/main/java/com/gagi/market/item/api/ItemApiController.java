@@ -13,7 +13,6 @@ import java.net.URI;
 
 import static com.gagi.market.item.api.ItemApiController.ITEM_API_URI;
 
-@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(ITEM_API_URI)
 public class ItemApiController {
