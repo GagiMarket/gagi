@@ -52,7 +52,7 @@ public class ItemApiController {
 
     @PostMapping
     public ResponseEntity<ItemResponseDto> createItem(@RequestBody ItemRequestDto requestDto) {
-        Item item = itemService.createItem(requestDto);
+        Item item = itemService.createItem(requestDto.toEntity());
         return ResponseEntity
                 .created(URI.create(ITEM_API_URI + "/" + item.getItemId()))
                 .body(ItemResponseDto.of(item));
@@ -60,7 +60,7 @@ public class ItemApiController {
 
     @PutMapping("/{itemId}")
     public ResponseEntity<ItemResponseDto> updateItem(@PathVariable Long itemId, @RequestBody ItemRequestDto requestDto) {
-        Item item = itemService.updateItem(itemId, requestDto);
+        Item item = itemService.updateItem(itemId, requestDto.toEntity());
         return ResponseEntity
                 .created(URI.create(ITEM_API_URI + "/" + item.getItemId()))
                 .body(ItemResponseDto.of(item));

@@ -36,13 +36,13 @@ public class ItemService {
         return itemRepository.findItemsByItemNameContains(itemName, pageable);
     }
 
-    public Item createItem(ItemRequestDto requestDto) {
-        return itemRepository.save(requestDto.toEntity());
+    public Item createItem(Item item) {
+        return itemRepository.save(item);
     }
 
-    public Item updateItem(Long itemId, ItemRequestDto requestDto) {
+    public Item updateItem(Long itemId, Item item) {
         Item findItem = findItemById(itemId);
-        return findItem.update(requestDto.toEntity());
+        return findItem.update(item);
     }
 
     public void deleteItem(Long itemId) {
