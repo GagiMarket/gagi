@@ -6,6 +6,7 @@ import com.gagi.market.item.domain.Item;
 import com.gagi.market.item.service.ItemService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -67,7 +68,7 @@ public class ItemApiController {
     }
 
     @DeleteMapping("/{itemId}")
-    public ResponseEntity deleteItem(@PathVariable Long itemId) {
+    public ResponseEntity<HttpStatus> deleteItem(@PathVariable Long itemId) {
         itemService.deleteItem(itemId);
         return ResponseEntity
                 .ok()
