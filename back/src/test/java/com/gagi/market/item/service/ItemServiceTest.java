@@ -77,7 +77,8 @@ class ItemServiceTest {
                 .itemCategory("이어폰")
                 .itemPrice(20000)
                 .itemLocation("가로수길")
-                .build());
+                .build()
+                .toEntity());
         Assertions.assertThat(item.getItemName()).isEqualTo("에어팟");
     }
 
@@ -103,7 +104,7 @@ class ItemServiceTest {
                 .itemLocation("강남역")
                 .build();
         Item findItem = itemService.findItemById(item.getItemId());
-        itemService.updateItem(findItem.getItemId(), requestDto);
+        itemService.updateItem(findItem.getItemId(), requestDto.toEntity());
 
         //then
         Assertions.assertThat(findItem.getItemName()).isEqualTo("m2 맥북 프로");
