@@ -58,6 +58,7 @@ class ItemRepositoryTest {
         itemRepository.save(item);
 
         //then
+        assertThat(item.getMember().getMemberId()).isEqualTo(findMember.getMemberId());
         assertThat(item.getMember().getMemberEmail()).isEqualTo("test@gagi.com");
         assertThat(item.getItemName()).isEqualTo("m1 맥북 프로");
     }
@@ -69,19 +70,21 @@ class ItemRepositoryTest {
         String memberEmail = "test@gagi.com";
         Member findMember = memberRepository.findMemberByMemberEmail(memberEmail).get();
 
-        Item saveItem = itemRepository.save(Item.builder()
+        Item saveItem = Item.builder()
                 .itemName("m1 맥북 프로")
                 .itemDescription("2021 신형 애플 노트북")
                 .itemCategory("노트북")
                 .itemPrice(10000)
                 .itemLocation("강남역")
-                .build());
+                .build();
         saveItem.createItem(findMember);
+        itemRepository.save(saveItem);
 
         //when
         List<Item> list = itemRepository.findAll();
 
         //then
+        assertThat(list.get(0).getMember().getMemberId()).isEqualTo(findMember.getMemberId());
         assertThat(list.size()).isEqualTo(1);
     }
 
@@ -93,19 +96,21 @@ class ItemRepositoryTest {
         Member findMember = memberRepository.findMemberByMemberEmail(memberEmail).get();
 
         for (int i = 0; i < 20; i++) {
-            Item item = itemRepository.save(Item.builder()
+            Item item = Item.builder()
                     .itemName("m" + i + " 맥북 프로")
                     .itemDescription("2021 신형 애플 노트북")
                     .itemCategory("노트북")
                     .itemPrice(10000 + i)
                     .itemLocation("강남역")
-                    .build());
+                    .build();
             item.createItem(findMember);
+            itemRepository.save(item);
         }
         //when
         Page<Item> findItems = itemRepository.findAll(PageRequest.of(1, 5));
 
         //then
+        assertThat(findItems.getContent().get(0).getMember().getMemberId()).isEqualTo(findMember.getMemberId());
         assertThat(findItems.getNumber()).isEqualTo(1);//현재 페이지 번호
         assertThat(findItems.getSize()).isEqualTo(5);//현재 조회된 데이터 개수
         assertThat(findItems.getTotalElements()).isEqualTo(20);//전체 데이터 개수
@@ -121,29 +126,34 @@ class ItemRepositoryTest {
         String memberEmail = "test@gagi.com";
         Member findMember = memberRepository.findMemberByMemberEmail(memberEmail).get();
 
-        Item saveItem = itemRepository.save(Item.builder()
+        Item item = Item.builder()
                 .itemName("m1 맥북 프로")
                 .itemDescription("2021 신형 애플 노트북")
                 .itemCategory("노트북")
                 .itemPrice(10000)
                 .itemLocation("강남역")
-                .build());
-        saveItem.createItem(findMember);
+                .build();
+        item.createItem(findMember);
+        itemRepository.save(item);
 
         //when
-        Item updateItem = saveItem.update(Item.builder()
+        Item updateItem = item.update(Item.builder()
                 .itemName("m60 맥북 프로")
                 .itemDescription("5050 신형 애플 노트북")
                 .itemCategory("노트북")
                 .itemPrice(1500)
                 .itemLocation("강남역")
                 .build());
-        updateItem.createItem(findMember);
         Item findItem = itemRepository.findById(updateItem.getItemId()).get();
 
         //then
+        assertThat(findItem.getMember().getMemberId()).isEqualTo(findMember.getMemberId());
         assertThat(findItem.getMember().getMemberEmail().equals(findMember.getMemberEmail())).isTrue();
         assertThat(findItem.getItemName()).isEqualTo("m60 맥북 프로");
+        assertThat(findItem.getItemDescription()).isEqualTo("5050 신형 애플 노트북");
+        assertThat(findItem.getItemCategory()).isEqualTo("노트북");
+        assertThat(findItem.getItemPrice()).isEqualTo(1500);
+        assertThat(findItem.getItemLocation()).isEqualTo("강남역");
     }
 
     @DisplayName("상품에 대한 권한을 가진 회원은 상품을 삭제할 수 있다.")
@@ -153,22 +163,22 @@ class ItemRepositoryTest {
         String memberEmail = "test@gagi.com";
         Member findMember = memberRepository.findMemberByMemberEmail(memberEmail).get();
 
-        Item saveItem = itemRepository.save(Item.builder()
+        Item item = Item.builder()
                 .itemName("m1 맥북 프로")
                 .itemDescription("2021 신형 애플 노트북")
                 .itemCategory("노트북")
                 .itemPrice(10000)
                 .itemLocation("강남역")
-                .build());
-        saveItem.createItem(findMember);
+                .build();
+        item.createItem(findMember);
+        itemRepository.save(item);
 
         //when
-        Item findItem = itemRepository.findById(saveItem.getItemId()).get();
+        Item findItem = itemRepository.findById(item.getItemId()).get();
         itemRepository.delete(findItem);
 
         //then
         List<Item> list = itemRepository.findAll();
-        assertThat(findItem.getMember().getMemberEmail().equals(findMember.getMemberEmail())).isTrue();
         assertThat(list.size()).isEqualTo(0);
     }
 
@@ -179,32 +189,35 @@ class ItemRepositoryTest {
         String memberEmail = "test@gagi.com";
         Member findMember = memberRepository.findMemberByMemberEmail(memberEmail).get();
 
-        Item item1 = itemRepository.save(Item.builder()
+        Item item1 = Item.builder()
                 .itemName("m1 맥북 프로")
                 .itemDescription("2021 신형 애플 노트북")
                 .itemCategory("노트북")
                 .itemPrice(10000)
                 .itemLocation("강남역")
-                .build());
+                .build();
         item1.createItem(findMember);
+        itemRepository.save(item1);
 
-        Item item2 = itemRepository.save(Item.builder()
+        Item item2 = Item.builder()
                 .itemName("m2 맥북 프로")
                 .itemDescription("2022 신형 애플 노트북")
                 .itemCategory("노트북")
                 .itemPrice(20000)
                 .itemLocation("서울역")
-                .build());
+                .build();
         item2.createItem(findMember);
+        itemRepository.save(item2);
 
-        Item item3 = itemRepository.save(Item.builder()
+        Item item3 = Item.builder()
                 .itemName("에어팟 프로")
                 .itemDescription("2022 신형 애플 노트북")
                 .itemCategory("노트북")
                 .itemPrice(20000)
                 .itemLocation("서울역")
-                .build());
+                .build();
         item3.createItem(findMember);
+        itemRepository.save(item3);
 
         //when
         List<Item> findItemList = itemRepository.findItemsByItemNameContains("프로", null).getContent();
