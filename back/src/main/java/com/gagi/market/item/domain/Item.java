@@ -29,7 +29,7 @@ public class Item {
     private Member member;
 
     @Builder
-    public Item(String itemName, String itemDescription, String itemCategory, int itemPrice, String itemLocation, Member member) {
+    public Item(String itemName, String itemDescription, String itemCategory, int itemPrice, String itemLocation) {
         this.itemName = itemName;
         this.itemDescription = itemDescription;
         this.itemCategory = itemCategory;
@@ -37,7 +37,12 @@ public class Item {
         this.itemLocation = itemLocation;
         this.registerDate = LocalDateTime.now();
         this.updateDate = LocalDateTime.now();
+    }
+
+    //==생성 메소드==//
+    public Item createItem(Member member) {
         setMember(member);
+        return this;
     }
 
     //==연관관계 메소드==//
