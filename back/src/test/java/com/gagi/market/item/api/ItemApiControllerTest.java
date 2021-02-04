@@ -155,9 +155,30 @@ class ItemApiControllerTest {
         assertThat(list.get(0).getItemCategory()).isEqualTo("노트북");
     }
 
+    @DisplayName("비회원은 상품 등록을 실패한다.")
+    @Test
+    public void nonMemberFailInCreateItem() throws Exception {
+        //given
+        String url = LOCALHOST_URI + port + ITEM_API_URI;
+        ItemRequestDto requestDto = ItemRequestDto.builder()
+                .itemName("m1 맥북 프로")
+                .itemDescription("2021 신형 애플 노트북")
+                .itemCategory("노트북")
+                .itemPrice(10000)
+                .itemLocation("강남역")
+                .build();
+        //when
+        mvc.perform(
+                post(url)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(requestDto)))
+                .andExpect(status().isUnauthorized());
+        //then
+    }
+
     @DisplayName("권한을 가진 회원은 상품 정보 수정을 성공한다.")
     @Test
-    public void updateItem() throws Exception {
+    public void permittedMemberSuccessToUpdateItem() throws Exception {
         //given
         String memberEmail = "test@gagi.com";
         Member findMember = memberRepository.findMemberByMemberEmail(memberEmail).get();
@@ -194,6 +215,46 @@ class ItemApiControllerTest {
         assertThat(list.get(0).getItemName()).isEqualTo(expectedItemName);
     }
 
+    @DisplayName("상품에 권한이 없는 회원은 상품 정보 수정을 실패한다.")
+    @Test
+    public void noPermittedMemberFailToUpdateItem() throws Exception {
+        //given
+        Member member = memberRepository.save(Member.builder()
+                .memberEmail("fake@gagi.com")
+                .memberPw("test")
+                .memberAddress("가지특별시 가지동")
+                .memberPhoneNumber("010-1234-5678")
+                .build());
+        Item item = Item.builder()
+                .itemName("m1 맥북 프로")
+                .itemDescription("2021 신형 애플 노트북")
+                .itemCategory("노트북")
+                .itemPrice(10000)
+                .itemLocation("강남역")
+                .build();
+        item.createItem(member);
+        itemRepository.save(item);
+
+        //when
+        Long itemId = item.getItemId();
+        String expectedItemName = "m1 맥북 에어";
+        ItemRequestDto requestDto = ItemRequestDto.builder()
+                .itemName(expectedItemName)
+                .itemDescription("2021 신형 애플 노트북")
+                .itemCategory("노트북")
+                .itemPrice(10000)
+                .itemLocation("강남역")
+                .build();
+        String url = LOCALHOST_URI + port + ITEM_API_URI + "/" + itemId;
+        mvc.perform(
+                put(url)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .session(session)
+                        .content(new ObjectMapper().writeValueAsString(requestDto)))
+                .andExpect(status().isUnauthorized());
+        //then
+    }
+
     @DisplayName("권한을 가진 회원은 상품 삭제를 성공한다.")
     @Test
     public void deleteItem() throws Exception {
@@ -220,5 +281,35 @@ class ItemApiControllerTest {
         //then
         List<Item> list = itemRepository.findAll();
         assertThat(list.size()).isEqualTo(0);
+    }
+
+    @DisplayName("상품에 권한이 없는 회원은 상품 삭제를 실패한다.")
+    @Test
+    public void noPermittedMemberFailToDeleteItem() throws Exception {
+        //given
+        Member member = memberRepository.save(Member.builder()
+                .memberEmail("fake@gagi.com")
+                .memberPw("test")
+                .memberAddress("가지특별시 가지동")
+                .memberPhoneNumber("010-1234-5678")
+                .build());
+        Item item = Item.builder()
+                .itemName("m1 맥북 프로")
+                .itemDescription("2021 신형 애플 노트북")
+                .itemCategory("노트북")
+                .itemPrice(10000)
+                .itemLocation("강남역")
+                .build();
+        item.createItem(member);
+        itemRepository.save(item);
+        //when
+        Long itemId = item.getItemId();
+        String url = LOCALHOST_URI + port + ITEM_API_URI + "/" + itemId;
+        mvc.perform(
+                delete(url)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .session(session))
+                .andExpect(status().isUnauthorized());
+        //then
     }
 }
