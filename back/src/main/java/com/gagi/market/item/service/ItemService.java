@@ -54,7 +54,7 @@ public class ItemService {
         itemRepository.deleteById(itemId);
     }
 
-    public boolean checkItemAuthorization(Long itemId, String memberEmail) {
+    public boolean checkPermissionOfItem(Long itemId, String memberEmail) {
         Member findMember = memberRepository.findMemberByMemberEmail(memberEmail).orElse(null);
         Item findItem = itemRepository.findById(itemId).orElse(null);
         return findItem

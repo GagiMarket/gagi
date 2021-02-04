@@ -56,9 +56,6 @@ public class ItemApiController {
     @PostMapping
     public ResponseEntity<ItemResponseDto> createItem(@LoginMember SessionMember member,
                                                       @RequestBody ItemRequestDto requestDto) {
-        if (member == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
         Item item = itemService.createItem(requestDto.toEntity(), member.getMemberEmail());
         return ResponseEntity
                 .created(URI.create(ITEM_API_URI + "/" + item.getItemId()))
@@ -69,7 +66,7 @@ public class ItemApiController {
     public ResponseEntity<ItemResponseDto> updateItem(@LoginMember SessionMember member,
                                                       @PathVariable Long itemId,
                                                       @RequestBody ItemRequestDto requestDto) {
-        if (member == null || !itemService.checkItemAuthorization(itemId, member.getMemberEmail())) {
+        if (!itemService.checkPermissionOfItem(itemId, member.getMemberEmail())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
         Item item = itemService.updateItem(itemId, requestDto.toEntity());
@@ -81,7 +78,7 @@ public class ItemApiController {
     @DeleteMapping("/{itemId}")
     public ResponseEntity<HttpStatus> deleteItem(@LoginMember SessionMember member,
                                                  @PathVariable Long itemId) {
-        if (member == null || !itemService.checkItemAuthorization(itemId, member.getMemberEmail())) {
+        if (!itemService.checkPermissionOfItem(itemId, member.getMemberEmail())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
         itemService.deleteItem(itemId);
