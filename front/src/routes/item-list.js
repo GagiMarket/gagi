@@ -12,7 +12,7 @@ class ItemList extends React.Component {
     }
 
   getPostListItem = async() => {    
-    const items = await axios.get("http://ec2-3-36-83-107.ap-northeast-2.compute.amazonaws.com:8080/api/items");
+    const items = await axios.get("http://ec2-3-36-83-107.ap-northeast-2.compute.amazonaws.com:8080/api/v1.0/items");
     this.setState({list_items:items.data, isLoading:false});
   }
 

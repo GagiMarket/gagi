@@ -17,7 +17,7 @@ class Post extends React.Component {
   }
 
   handleAccount = (item_info) => {
-    fetch('http://ec2-3-36-83-107.ap-northeast-2.compute.amazonaws.com:8080/api/items', {
+    fetch('http://ec2-3-36-83-107.ap-northeast-2.compute.amazonaws.com:8080/api/v1.0/items', {
       method: 'post',	
       headers: {
         "Content-Type": "application/json; charset=utf-8"	
