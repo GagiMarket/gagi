@@ -1,8 +1,9 @@
 package com.gagi.market.item.service;
 
-import com.gagi.market.item.api.dto.ItemRequestDto;
 import com.gagi.market.item.domain.Item;
 import com.gagi.market.item.domain.ItemRepository;
+import com.gagi.market.member.domain.Member;
+import com.gagi.market.member.domain.MemberRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -15,9 +16,11 @@ import java.util.List;
 public class ItemService {
 
     private final ItemRepository itemRepository;
+    private final MemberRepository memberRepository;
 
-    public ItemService(ItemRepository itemRepository) {
+    public ItemService(ItemRepository itemRepository, MemberRepository memberRepository) {
         this.itemRepository = itemRepository;
+        this.memberRepository = memberRepository;
     }
 
     public List<Item> findItems() {
@@ -36,16 +39,27 @@ public class ItemService {
         return itemRepository.findItemsByItemNameContains(itemName, pageable);
     }
 
-    public Item createItem(ItemRequestDto requestDto) {
-        return itemRepository.save(requestDto.toEntity());
+    public Item createItem(Item item, String memberEmail) {
+        Member findMember = memberRepository.findMemberByMemberEmail(memberEmail).orElse(null);
+        Item createItem = item.createItem(findMember);
+        return itemRepository.save(createItem);
     }
 
-    public Item updateItem(Long itemId, ItemRequestDto requestDto) {
+    public Item updateItem(Long itemId, Item item) {
         Item findItem = findItemById(itemId);
-        return findItem.update(requestDto.toEntity());
+        return findItem.update(item);
     }
 
     public void deleteItem(Long itemId) {
         itemRepository.deleteById(itemId);
+    }
+
+    public boolean checkPermissionOfItem(Long itemId, String memberEmail) {
+        Member findMember = memberRepository.findMemberByMemberEmail(memberEmail).orElse(null);
+        Item findItem = itemRepository.findById(itemId).orElse(null);
+        return findItem
+                .getMember()
+                .getMemberEmail()
+                .equals(findMember.getMemberEmail());
     }
 }

@@ -1,13 +1,11 @@
 package com.gagi.market.item.domain;
 
+import com.gagi.market.member.domain.Member;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter
@@ -26,6 +24,10 @@ public class Item {
     private LocalDateTime registerDate;
     private LocalDateTime updateDate;
 
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member member;
+
     @Builder
     public Item(String itemName, String itemDescription, String itemCategory, int itemPrice, String itemLocation) {
         this.itemName = itemName;
@@ -35,6 +37,18 @@ public class Item {
         this.itemLocation = itemLocation;
         this.registerDate = LocalDateTime.now();
         this.updateDate = LocalDateTime.now();
+    }
+
+    //==생성 메소드==//
+    public Item createItem(Member member) {
+        setMember(member);
+        return this;
+    }
+
+    //==연관관계 메소드==//
+    public void setMember(Member member) {
+        this.member = member;
+        member.getItems().add(this);
     }
 
     //==비즈니스 로직==//

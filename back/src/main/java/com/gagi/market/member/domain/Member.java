@@ -1,14 +1,14 @@
 package com.gagi.market.member.domain;
 
+import com.gagi.market.item.domain.Item;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -17,11 +17,15 @@ public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "member_id")
     private Long memberId;
     private String memberEmail;
     private String memberPw;
     private String memberPhoneNumber;
     private String memberAddress;
+
+    @OneToMany(mappedBy = "member")
+    private List<Item> items = new ArrayList<>();
     private LocalDateTime registerDate;
 
     @Builder
