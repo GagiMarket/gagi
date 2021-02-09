@@ -9,6 +9,7 @@ front/*.log
 front/logs
 front/**/*.backup.*
 front/**/*.back.*
+front/.eslintcache
 
 front/node_modules
 front/bower_components
